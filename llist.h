@@ -13,7 +13,7 @@ node *start = NULL; //initiate node to null value (Empty list)
 node* getnode() {
     node* newnode; // declare a pointer variable
     newnode = (node *) malloc(sizeof(node)); // create a node
-    printf("\n Enter data: ");  // take the user input to node
+    printf("Enter data: ");  // take the user input to node
     scanf("%d", &newnode -> data); 
    // newnode -> data = data;
     newnode -> next = NULL; //define next variable (address) present in sslinklist to NULL
@@ -54,7 +54,8 @@ int traverse(){
             temp = temp -> next; // Temp variable heads to Node of Next Address
         }
     }
-    printf("X"); // If Data is complete X is Prints as seen in Train
+    printf("X\n"); // If Data is complete X is Prints as seen in Train
+    
     return 0;
 }
 
@@ -100,9 +101,28 @@ int bdlist(){
         temp = start; //assign start to temp variable
         start = temp -> next; // assign start to next node
         free(temp); // free the current node
-        printf("\n Node deleted ");// display
+        printf("\n Node deleted at Beginning \n");// display
         
     }
     return 0;
 }
-
+// Function to Delete List at Ending
+int edlist(){
+    node *temp, *prev; //create temp and prev node
+    if(start == NULL){ // check start element is NULL or not
+        printf("\n No nodes are exist..");
+        return 0;
+    }
+    else{
+        temp = start;// assign temp node to start
+        prev = start; // assign prev node to start
+        while(temp -> next != NULL) {
+            prev = temp; // assign prev to prevous node address
+            temp = temp -> next; //assigned address of current node
+            }
+            prev -> next = NULL;  //assign previous link node to be NULL
+            free(temp); // free the temp node
+            printf("\n Node deleted at Ending\n");
+    }
+    return 0;
+}
